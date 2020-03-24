@@ -39,7 +39,8 @@ public class MarketModule extends WebDescribedModuleBase {
 	@Override
 	public void preInit() {
 		
-		CommandRegistry.registerCommand(new MarketCommand());
+		CommandRegistry registry = CommandRegistry.getDefaultRegistry();
+			registry.registerCommand(new MarketCommand());
 		
 		MarketHlRepository.setRepository(new MarketImpl.HighLevelRepository());
 		ItemHlRepository.setRepository(new ItemImpl.HighLevelRepository());
