@@ -3,17 +3,22 @@ package com.inwaiders.plames.modules.market;
 import com.inwaiders.plames.api.command.CommandRegistry;
 import com.inwaiders.plames.api.locale.PlamesLocale;
 import com.inwaiders.plames.domain.messenger.profile.impl.SystemProfile;
+import com.inwaiders.plames.domain.module.impl.ModuleBase;
 import com.inwaiders.plames.modules.market.domain.commands.MarketCommand;
 import com.inwaiders.plames.modules.market.domain.item.ItemHlRepository;
 import com.inwaiders.plames.modules.market.domain.item.ItemImpl;
 import com.inwaiders.plames.modules.market.domain.market.MarketHlRepository;
 import com.inwaiders.plames.modules.market.domain.market.MarketImpl;
-import com.inwaiders.plames.modules.webcontroller.domain.module.WebDescribedModuleBase;
+import com.inwaiders.plames.modules.webcontroller.domain.module.BaseWebDescription;
+import com.inwaiders.plames.modules.webcontroller.domain.module.WebDescribedModule;
+import com.inwaiders.plames.modules.webcontroller.domain.module.WebDescription;
 import com.inwaiders.plames.modules.webcontroller.domain.module.button.Button;
 
-public class MarketModule extends WebDescribedModuleBase {
+public class MarketModule extends ModuleBase implements WebDescribedModule {
 
 	private static MarketModule INSTANCE = new MarketModule();
+	
+	private BaseWebDescription webDescription = new BaseWebDescription();
 	
 	public MarketModule() {
 	
@@ -24,7 +29,7 @@ public class MarketModule extends WebDescribedModuleBase {
 			button.setBordersColor("#9EBFD8");
 			button.setTargetPage("/market/offers");
 
-		this.buttons.add(button);
+		webDescription.addButton(button);
 		
 		button = new Button();
 			button.setName("Список предметов");
@@ -33,7 +38,7 @@ public class MarketModule extends WebDescribedModuleBase {
 			button.setBordersColor("#9EBFD8");
 			button.setTargetPage("/market/items");
 
-		this.buttons.add(button);
+			webDescription.addButton(button);
 	}
 	
 	@Override
@@ -52,6 +57,12 @@ public class MarketModule extends WebDescribedModuleBase {
 		
 	}
 
+	@Override
+	public WebDescription getWebDescription() {
+		
+		return this.webDescription;
+	}
+	
 	@Override
 	public String getName() {
 		
