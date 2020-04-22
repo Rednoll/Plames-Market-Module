@@ -1,8 +1,8 @@
 package com.inwaiders.plames.modules.market.domain.commands;
 
-import com.inwaiders.plames.api.command.CommandException;
-import com.inwaiders.plames.api.messenger.profile.UserProfile;
-import com.inwaiders.plames.domain.messenger.command.MessengerCommand;
+import enterprises.inwaiders.plames.api.command.CommandException;
+import enterprises.inwaiders.plames.api.messenger.profile.UserProfile;
+import enterprises.inwaiders.plames.domain.messenger.command.MessengerCommand;
 
 public class MarketCommand extends MessengerCommand{
 

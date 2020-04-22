@@ -16,11 +16,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
-import com.inwaiders.plames.dao.EntityLink;
 import com.inwaiders.plames.modules.market.dao.market.MarketRepository;
 import com.inwaiders.plames.modules.market.domain.item.Item;
 import com.inwaiders.plames.modules.market.domain.item.ItemImpl;
-import com.inwaiders.plames.spring.SpringUtils;
+
+import enterprises.inwaiders.plames.dao.EntityLink;
+import enterprises.inwaiders.plames.spring.SpringUtils;
 
 @Entity
 @Table(name = "market_markets")

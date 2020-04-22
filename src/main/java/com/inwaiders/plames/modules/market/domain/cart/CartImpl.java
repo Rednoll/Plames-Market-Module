@@ -24,11 +24,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.inwaiders.plames.api.user.User;
-import com.inwaiders.plames.domain.user.impl.UserImpl;
 import com.inwaiders.plames.modules.market.dao.cart.CartRepository;
 import com.inwaiders.plames.modules.market.domain.stack.ItemStack;
 import com.inwaiders.plames.modules.market.domain.stack.ItemStackImpl;
+
+import enterprises.inwaiders.plames.api.user.User;
+import enterprises.inwaiders.plames.domain.user.impl.UserImpl;
 
 @Entity(name = "Cart")
 @Table(name = "market_carts")

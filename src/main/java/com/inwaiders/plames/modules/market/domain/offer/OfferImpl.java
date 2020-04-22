@@ -25,10 +25,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.inwaiders.plames.api.locale.PlamesLocale;
-import com.inwaiders.plames.api.user.User;
-import com.inwaiders.plames.api.utils.DescribedFunctionResult;
-import com.inwaiders.plames.api.utils.DescribedFunctionResult.Status;
 import com.inwaiders.plames.modules.market.dao.offer.OfferRepository;
 import com.inwaiders.plames.modules.market.domain.cart.Cart;
 import com.inwaiders.plames.modules.market.domain.item.Item;
@@ -39,6 +35,11 @@ import com.inwaiders.plames.modules.market.domain.stack.ItemStackImpl;
 import com.inwaiders.plames.modules.wallet.domain.account.CurrencyAccount;
 import com.inwaiders.plames.modules.wallet.domain.currency.Currency;
 import com.inwaiders.plames.modules.wallet.domain.wallet.Wallet;
+
+import enterprises.inwaiders.plames.api.locale.PlamesLocale;
+import enterprises.inwaiders.plames.api.user.User;
+import enterprises.inwaiders.plames.api.utils.DescribedFunctionResult;
+import enterprises.inwaiders.plames.api.utils.DescribedFunctionResult.Status;
 
 @Entity(name = "Offer")
 @Table(name = "market_offers")
@@ -99,7 +100,11 @@ public class OfferImpl implements Offer {
 		
 		Wallet wallet = Wallet.getByOwner(user);
 		
-		if(!price.checkPurchaseOpportunity(wallet.getPrivateAccounts())) return new DescribedFunctionResult(Status.ERROR, "Недостаточно средств!");
+		Set<CurrencyAccount> accounts = new HashSet<>();
+		
+		wallet.getPrivateAccounts().stream().map(account -> accounts.add(account));
+		
+		if(!price.checkPurchaseOpportunity(accounts)) return new DescribedFunctionResult(Status.ERROR, "Недостаточно средств!");
 		
 		for(ItemStack is : itemStacks) {
 			
